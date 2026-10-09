@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>FOREGA LABS AI — Energy, engineered.</title>
+<meta name="description" content="FOREGA LABS AI. AI-formulated energy. Four formulas. Zero compromise. Fictional product — built as a design demo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+
+<!-- ============ LOADER ============ -->
+<div id="loader" aria-hidden="true">
+  <div class="loader-inner">
+    <div class="loader-logo">FOREGA<span>_</span>LABS</div>
+    <div class="loader-status" id="loaderStatus">INITIALIZING FOREGA.OS</div>
+    <div class="loader-bar"><div class="loader-fill" id="loaderFill"></div></div>
+    <div class="loader-pct" id="loaderPct">000%</div>
+    <div class="loader-log" id="loaderLog"></div>
+  </div>
+</div>
+
+<!-- ============ 3D STAGE (fixed) ============ -->
+<div id="stage" aria-hidden="true"><canvas id="gl"></canvas></div>
+<div id="vignette" aria-hidden="true"></div>
+<div id="grain" aria-hidden="true"></div>
+
+<!-- ============ FIXED HUD CHROME ============ -->
+<header id="hud-top">
+  <div class="hud-brand">FOREGA<span class="accent-dot">.</span>LABS&nbsp;AI</div>
+  <div class="hud-meta mono">EST. 2027 // BATCH 001</div>
+</header>
+
+<div id="hud-bottom-left" class="mono">
+  <div id="hudFormula">FORMULA --</div>
+  <div id="hudStats">CAFFEINE 200MG · SUGAR 0G</div>
+</div>
+
+<nav id="dots" aria-label="Flavor selector">
+  <button class="dot" data-flavor="0" aria-label="Neon Synapse"><span></span></button>
+  <button class="dot" data-flavor="1" aria-label="Circuit Rush"><span></span></button>
+  <button class="dot" data-flavor="2" aria-label="Quantum Berry"><span></span></button>
+  <button class="dot" data-flavor="3" aria-label="Overclock"><span></span></button>
+</nav>
+
+<div id="scrollHint" class="mono">SCROLL</div>
+
+<!-- ============ SCROLL SPACE ============ -->
+<main id="scrollSpace">
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-eyebrow mono">AI-FORMULATED ENERGY // BATCH 001</div>
+    <h1 class="hero-title"><span>FOREGA</span><span class="hero-title-sub">LABS&nbsp;AI</span></h1>
+    <p class="hero-tag">ENERGY, ENGINEERED.</p>
+    <p class="hero-sub mono">FOUR FORMULAS. ONE MACHINE. ZERO COMPROMISE.</p>
+    <div class="scroll-cue mono">EXPLORE FORMULAS <span class="cue-arrow">↓</span></div>
+  </section>
+
+  <!-- FLAVOR CHAPTERS -->
+  <div id="flavors">
+
+    <section class="flavor-panel" data-flavor="0">
+      <div class="panel-inner">
+        <div class="flavor-index mono">01 / 04</div>
+        <h2 class="flavor-name">NEON<br>SYNAPSE</h2>
+        <p class="flavor-tagline">"Clarity at machine speed."</p>
+        <div class="spec-card mono">
+          <div class="spec-head">FORMULA NS-01 // SPEC SHEET</div>
+          <div class="spec-row"><span>CAFFEINE</span><em>200MG</em></div>
+          <div class="spec-row"><span>L-THEANINE</span><em>200MG</em></div>
+          <div class="spec-row"><span>ALPHA-GPC</span><em>150MG</em></div>
+          <div class="spec-row"><span>L-TYROSINE</span><em>500MG</em></div>
+          <div class="spec-row"><span>SUGAR</span><em>0G</em></div>
+          <p class="spec-note">The focus formula. A 1:1 caffeine–theanine stack tuned for deep-work sessions. Clean signal, no static.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="flavor-panel" data-flavor="1">
+      <div class="panel-inner">
+        <div class="flavor-index mono">02 / 04</div>
+        <h2 class="flavor-name">CIRCUIT<br>RUSH</h2>
+        <p class="flavor-tagline">"Raw voltage. Zero crash."</p>
+        <div class="spec-card mono">
+          <div class="spec-head">FORMULA CR-02 // SPEC SHEET</div>
+          <div class="spec-row"><span>CAFFEINE</span><em>200MG</em></div>
+          <div class="spec-row"><span>TAURINE</span><em>1000MG</em></div>
+          <div class="spec-row"><span>ELECTROLYTES</span><em>350MG</em></div>
+          <div class="spec-row"><span>B-COMPLEX</span><em>200% DV</em></div>
+          <div class="spec-row"><span>SUGAR</span><em>0G</em></div>
+          <p class="spec-note">The performance formula. Fast-acting energy routed through electrolytes. Full output — no brownout.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="flavor-panel" data-flavor="2">
+      <div class="panel-inner">
+        <div class="flavor-index mono">03 / 04</div>
+        <h2 class="flavor-name">QUANTUM<br>BERRY</h2>
+        <p class="flavor-tagline">"Taste the superposition."</p>
+        <div class="spec-card mono">
+          <div class="spec-head">FORMULA QB-03 // SPEC SHEET</div>
+          <div class="spec-row"><span>CAFFEINE</span><em>200MG</em></div>
+          <div class="spec-row"><span>L-THEANINE</span><em>150MG</em></div>
+          <div class="spec-row"><span>LION'S MANE</span><em>500MG</em></div>
+          <div class="spec-row"><span>ANTIOXIDANTS</span><em>300MG</em></div>
+          <div class="spec-row"><span>SUGAR</span><em>0G</em></div>
+          <p class="spec-note">The creative formula. Berry-forward with a nootropic stack for lateral thinking. Every possibility, at once.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="flavor-panel" data-flavor="3">
+      <div class="panel-inner">
+        <div class="flavor-index mono">04 / 04</div>
+        <h2 class="flavor-name">OVER<br>CLOCK</h2>
+        <p class="flavor-tagline">"Push past your clock speed."</p>
+        <div class="spec-card mono">
+          <div class="spec-head">FORMULA OC-04 // SPEC SHEET</div>
+          <div class="spec-row"><span>CAFFEINE</span><em>200MG</em></div>
+          <div class="spec-row"><span>BETA-ALANINE</span><em>1600MG</em></div>
+          <div class="spec-row"><span>CITRULLINE</span><em>3000MG</em></div>
+          <div class="spec-row"><span>PINK SALT</span><em>250MG</em></div>
+          <div class="spec-row"><span>SUGAR</span><em>0G</em></div>
+          <p class="spec-note">The training formula. Pre-workout-grade pump compounds meet clean caffeine. Raise your thermal limit.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- THE LAB -->
+  <section id="lab">
+    <div class="lab-inner">
+      <div class="lab-eyebrow mono">INSIDE THE LAB</div>
+      <h2 class="lab-title">FORMULATED BY MACHINE.<br>PERFECTED FOR HUMANS.</h2>
+      <p class="lab-copy">FOREGA.OS simulated <strong>10,417</strong> ingredient combinations against focus, energy, and crash metrics. Human panels then killed every formula that tasted like a laboratory. What shipped is the intersection — engineered precision you can actually drink.</p>
+      <div class="stat-cards">
+        <div class="stat-card"><div class="stat-num">200<span>MG</span></div><div class="stat-label mono">CAFFEINE / CAN</div></div>
+        <div class="stat-card"><div class="stat-num">0<span>G</span></div><div class="stat-label mono">SUGAR. EVER.</div></div>
+        <div class="stat-card"><div class="stat-num">12</div><div class="stat-label mono">NOOTROPIC COMPOUNDS</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER / CTA -->
+  <footer id="footer">
+    <div class="footer-inner">
+      <div class="footer-eyebrow mono">BATCH 001 // DROPS SOON</div>
+      <h2 class="footer-title">BE FIRST.<br><span>NOTIFY ME</span></h2>
+      <form id="notifyForm" novalidate>
+        <input type="email" id="notifyEmail" class="mono" placeholder="YOUR@EMAIL.COM" aria-label="Email address" required>
+        <button type="submit" class="mono">NOTIFY ME →</button>
+      </form>
+      <div id="notifyMsg" class="mono" aria-live="polite"></div>
+      <div class="socials mono">
+        <a href="#" rel="noopener">X</a>
+        <a href="#" rel="noopener">INSTAGRAM</a>
+        <a href="#" rel="noopener">YOUTUBE</a>
+        <a href="#" rel="noopener">TIKTOK</a>
+      </div>
+      <div class="legal mono">© 2027 FOREGA LABS AI — FICTIONAL PRODUCT. BUILT AS A DESIGN DEMO.</div>
+    </div>
+  </footer>
+
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script type="module" src="labels.js"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>
